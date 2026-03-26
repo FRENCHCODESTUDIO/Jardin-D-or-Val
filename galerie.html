@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie Réalisations — Les Jardins d'Or Val Paysagiste (04)</title>
+  <meta name="description" content="Découvrez nos réalisations en création de jardins, terrassement, entretien, élagage et clôtures en Alpes-de-Haute-Provence." />
+  <meta name="keywords" content="galerie paysagiste 04, photos jardins créés, terrassement Alpes-de-Haute-Provence, réalisations espaces verts" />
+  <meta name="author" content="Les Jardins d'Or Val" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.lesjardinsodorval.fr/galerie.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.lesjardinsodorval.fr/galerie.html" />
+  <meta property="og:title" content="Galerie — Les Jardins d'Or Val" />
+  <meta property="og:description" content="Photos de nos réalisations en création, terrassement, entretien et élagage." />
+  <meta property="og:image" content="https://www.lesjardinsodorval.fr/images/og-galerie.jpg" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Les Jardins d'Or Val" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galerie — Les Jardins d'Or Val" />
+  <meta name="twitter:description" content="Photos de nos réalisations paysagères en Alpes-de-Haute-Provence." />
+  <meta name="twitter:image" content="https://www.lesjardinsodorval.fr/images/og-galerie.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Galerie — Les Jardins d'Or Val",
+    "description": "Photos de réalisations paysagères en Alpes-de-Haute-Provence.",
+    "url": "https://www.lesjardinsodorval.fr/galerie.html",
+    "isPartOf": { "@type": "WebSite", "name": "Les Jardins d'Or Val", "url": "https://www.lesjardinsodorval.fr" }
+  }
+  </script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#3A7D44" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav id="navbar" role="navigation" aria-label="Navigation principale">
+  <a href="index.html" class="nav-logo" aria-label="Les Jardins d'Or Val — Accueil">
+    <img src="images/logo.webp" alt="Logo Les Jardins d'Or Val" width="48" height="48" />
+    <span class="nav-logo-text">Les Jardins d'Or Val<span>Paysagiste — 04</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks" role="menubar">
+    <li role="none"><a href="index.html" role="menuitem">Accueil</a></li>
+    <li role="none"><a href="galerie.html" class="active" role="menuitem">Galerie</a></li>
+    <li role="none"><a href="contact.html" class="nav-cta" role="menuitem">Devis Gratuit</a></li>
+  </ul>
+  <button class="burger" id="burgerBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main id="main-content">
+
+  <header class="page-header">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> Galerie</div>
+    <h1>Nos <span>Réalisations</span></h1>
+    <p>Explorez nos chantiers : création, terrassement, entretien, élagage et clôtures en Alpes-de-Haute-Provence.</p>
+  </header>
+
+  <!-- FILTRES -->
+  <div class="galerie-filters" role="toolbar" aria-label="Filtrer par catégorie">
+    <span class="filter-label">Filtrer :</span>
+    <button class="filter-btn active" onclick="filterGalerie('all', this)" aria-pressed="true">Tout voir</button>
+    <button class="filter-btn" onclick="filterGalerie('creation', this)" aria-pressed="false">🌿 Création</button>
+    <button class="filter-btn" onclick="filterGalerie('terrassement', this)" aria-pressed="false">🚜 Terrassement</button>
+    <button class="filter-btn" onclick="filterGalerie('entretien', this)" aria-pressed="false">✂️ Entretien</button>
+    <button class="filter-btn" onclick="filterGalerie('elagage', this)" aria-pressed="false">🌳 Élagage</button>
+    <button class="filter-btn" onclick="filterGalerie('clotures', this)" aria-pressed="false">🔒 Clôtures</button>
+    <button class="filter-btn" onclick="filterGalerie('amenagement', this)" aria-pressed="false">🪨 Aménagement</button>
+  </div>
+
+  <!-- GALERIE -->
+  <section class="galerie-section" id="galerie-section">
+    <div id="galerie-loading" style="text-align:center;padding:5rem 2rem;color:var(--muted);font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;">
+      Chargement des photos…
+    </div>
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo">
+        <img src="images/logo.webp" alt="Logo" width="52" height="52" loading="lazy" />
+        <span class="footer-logo-text">Les Jardins d'Or Val<span>Paysagiste — 04</span></span>
+      </a>
+      <p>Votre paysagiste de confiance en Alpes-de-Haute-Provence.</p>
+    </div>
+    <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="contact.html">Devis Gratuit</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="contact.html">Création jardin</a></li><li><a href="contact.html">Terrassement</a></li><li><a href="contact.html">Entretien</a></li><li><a href="contact.html">Élagage</a></li><li><a href="contact.html">Clôtures</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+33600000000">📞 06 00 00 00 00</a></li><li><a href="mailto:contact@lesjardinsodorval.fr">✉ contact@lesjardinsodorval.fr</a></li><li><a href="contact.html">📍 Peyruis (04310)</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Les Jardins d'Or Val — Tous droits réservés</span>
+    <span><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+/* ═══════════════════════════════════════════════
+   CONFIG CLOUDINARY
+═══════════════════════════════════════════════ */
+var CLOUD_NAME = 'TON_CLOUD_NAME'; // ← À remplacer
+
+var CATS = {
+  creation:     { icon: '🌿', label: 'Création' },
+  terrassement: { icon: '🚜', label: 'Terrassement' },
+  entretien:    { icon: '✂️', label: 'Entretien' },
+  elagage:      { icon: '🌳', label: 'Élagage' },
+  clotures:     { icon: '🔒', label: 'Clôtures' },
+  amenagement:  { icon: '🪨', label: 'Aménagement' },
+};
+
+async function fetchByTag(tag) {
+  try {
+    var r = await fetch('https://res.cloudinary.com/' + CLOUD_NAME + '/image/list/' + tag + '.json');
+    if (!r.ok) return [];
+    var d = await r.json();
+    return d.resources || [];
+  } catch(e) { return []; }
+}
+
+function imgUrl(publicId) {
+  return 'https://res.cloudinary.com/' + CLOUD_NAME + '/image/upload/w_800,c_fill,q_auto,f_auto/' + publicId + '.jpg';
+}
+
+function getCaption(img) {
+  return (img.context && img.context.custom && img.context.custom.caption) ? img.context.custom.caption.trim() : '';
+}
+
+(async function loadGalerie() {
+  var section = document.getElementById('galerie-section');
+  var loading = document.getElementById('galerie-loading');
+
+  try {
+    var results = await Promise.all(
+      Object.keys(CATS).map(async function(cat) {
+        var imgs = await fetchByTag(cat);
+        return { cat: cat, imgs: imgs };
+      })
+    );
+
+    var total = results.reduce(function(acc, r) { return acc + r.imgs.length; }, 0);
+    loading.remove();
+
+    if (!total) {
+      section.innerHTML = '<p style="text-align:center;padding:5rem 2rem;color:var(--muted);">Les photos arrivent bientôt !</p>';
+      return;
+    }
+
+    var grid = document.createElement('div');
+    grid.className = 'galerie-grid';
+
+    results.forEach(function(r) {
+      var info = CATS[r.cat];
+      r.imgs.forEach(function(img) {
+        var url     = imgUrl(img.public_id);
+        var caption = getCaption(img) || info.label;
+        var card    = document.createElement('div');
+        card.className  = 'galerie-card';
+        card.dataset.cat = r.cat;
+        card.innerHTML =
+          '<img src="' + url + '" alt="' + caption + '" loading="lazy" data-lightbox />'
+          + '<div class="galerie-overlay">'
+          +   '<div class="galerie-cat">' + info.icon + ' ' + info.label + '</div>'
+          +   '<div class="galerie-title">' + caption + '</div>'
+          + '</div>';
+        grid.appendChild(card);
+      });
+    });
+
+    section.appendChild(grid);
+
+  } catch(e) {
+    loading.innerHTML = '<p style="text-align:center;padding:5rem 2rem;color:var(--muted);">Impossible de charger les photos.</p>';
+  }
+})();
+</script>
+
+</body>
+</html>
