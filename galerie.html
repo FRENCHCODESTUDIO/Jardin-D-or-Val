@@ -3,60 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galerie Réalisations — Les Jardins d'Or Val Paysagiste (04)</title>
-  <meta name="description" content="Découvrez nos réalisations en création de jardins, terrassement, entretien, élagage et clôtures en Alpes-de-Haute-Provence." />
-  <meta name="keywords" content="galerie paysagiste 04, photos jardins créés, terrassement Alpes-de-Haute-Provence, réalisations espaces verts" />
+  <title>Réalisations & Photos — Les Jardins d'Or Val Paysagiste (04)</title>
+  <meta name="description" content="Découvrez nos réalisations en création de jardins, terrassement, élagage et clôtures en Alpes-de-Haute-Provence. Photos avant/après." />
+  <meta name="keywords" content="réalisations paysagiste 04, photos jardins créés, terrassement Alpes-de-Haute-Provence, galerie espaces verts, avant après paysagisme" />
   <meta name="author" content="Les Jardins d'Or Val" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.lesjardinsodorval.fr/galerie.html" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.lesjardinsodorval.fr/galerie.html" />
-  <meta property="og:title" content="Galerie — Les Jardins d'Or Val" />
-  <meta property="og:description" content="Photos de nos réalisations en création, terrassement, entretien et élagage." />
+  <meta property="og:title" content="Nos Réalisations — Les Jardins d'Or Val" />
+  <meta property="og:description" content="Photos de nos chantiers paysagisme en Alpes-de-Haute-Provence. Création, terrassement, élagage, clôtures." />
   <meta property="og:image" content="https://www.lesjardinsodorval.fr/images/og-galerie.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Les Jardins d'Or Val" />
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Galerie — Les Jardins d'Or Val" />
-  <meta name="twitter:description" content="Photos de nos réalisations paysagères en Alpes-de-Haute-Provence." />
+  <meta name="twitter:title" content="Nos Réalisations — Les Jardins d'Or Val" />
+  <meta name="twitter:description" content="Photos de nos chantiers paysagisme en Alpes-de-Haute-Provence. Création, terrassement, élagage, clôtures." />
   <meta name="twitter:image" content="https://www.lesjardinsodorval.fr/images/og-galerie.jpg" />
+
+  <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Galerie — Les Jardins d'Or Val",
-    "description": "Photos de réalisations paysagères en Alpes-de-Haute-Provence.",
+    "@type": "ImageGallery",
+    "name": "Réalisations Les Jardins d'Or Val",
+    "description": "Galerie photos de chantiers paysagisme en Alpes-de-Haute-Provence.",
     "url": "https://www.lesjardinsodorval.fr/galerie.html",
-    "isPartOf": { "@type": "WebSite", "name": "Les Jardins d'Or Val", "url": "https://www.lesjardinsodorval.fr" }
+    "author": { "@type": "LocalBusiness", "name": "Les Jardins d'Or Val", "url": "https://www.lesjardinsodorval.fr" }
   }
   </script>
+
+    <!-- Favicon & Manifest -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <meta name="theme-color" content="#3A7D44" />
+  <meta name="theme-color" content="#3B5B3D" />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<nav id="navbar" role="navigation" aria-label="Navigation principale">
-  <a href="index.html" class="nav-logo" aria-label="Les Jardins d'Or Val — Accueil">
-    <img src="images/logo.webp" alt="Logo Les Jardins d'Or Val" width="48" height="48" />
-    <span class="nav-logo-text">Les Jardins d'Or Val<span>Paysagiste — 04</span></span>
-  </a>
-  <ul class="nav-links" id="navLinks" role="menubar">
-    <li role="none"><a href="index.html" role="menuitem">Accueil</a></li>
-    <li role="none"><a href="galerie.html" class="active" role="menuitem">Galerie</a></li>
-    <li role="none"><a href="contact.html" class="nav-cta" role="menuitem">Devis Gratuit</a></li>
+<nav id="navbar">
+  <ul class="nav-links-left">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="galerie.html" class="active">Réalisations</a></li>
   </ul>
-  <button class="burger" id="burgerBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Ouvrir le menu">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.webp" alt="Logo Les Jardins d'Or Val" width="40" height="40" />
+    <span class="nav-logo-text">Les Jardins d'Or Val<span>Paysagiste artisan · 04</span></span>
+  </a>
+  <ul class="nav-links-right">
+    <li><a href="services.html">Nos services</a></li>
+    <li><a href="contact.html" class="nav-cta">Devis Gratuit</a></li>
+  </ul>
+  <button class="burger" id="burgerBtn" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
+<ul id="mobileNav">
+  <li><a href="index.html">Accueil</a></li>
+  <li><a href="galerie.html">Réalisations</a></li>
+  <li><a href="services.html">Nos services</a></li>
+  <li><a href="contact.html">Devis Gratuit</a></li>
+</ul>
 
 <main id="main-content">
 
@@ -98,7 +118,7 @@
     </div>
     <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="contact.html">Devis Gratuit</a></li></ul></div>
     <div class="footer-col"><h4>Services</h4><ul><li><a href="contact.html">Création jardin</a></li><li><a href="contact.html">Terrassement</a></li><li><a href="contact.html">Entretien</a></li><li><a href="contact.html">Élagage</a></li><li><a href="contact.html">Clôtures</a></li></ul></div>
-    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+33600000000">📞 06 00 00 00 00</a></li><li><a href="mailto:contact@lesjardinsodorval.fr">✉ contact@lesjardinsodorval.fr</a></li><li><a href="contact.html">📍 Peyruis (04310)</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+33600000000">📞 06 00 00 00 00</a></li><li><a href="/cdn-cgi/l/email-protection#afccc0c1dbceccdbefc3cadcc5ceddcbc6c1dcc0cbc0ddd9cec381c9dd">✉ <span class="__cf_email__" data-cfemail="91f2feffe5f0f2e5d1fdf4e2fbf0e3f5f8ffe2fef5fee3e7f0fdbff7e3">[email&#160;protected]</span></a></li><li><a href="contact.html">📍 Peyruis (04310)</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2025 Les Jardins d'Or Val — Tous droits réservés</span>
@@ -106,7 +126,7 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
 <script>
 /* ═══════════════════════════════════════════════
    CONFIG CLOUDINARY
@@ -187,6 +207,15 @@ function getCaption(img) {
   }
 })();
 </script>
-
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.getElementById('burgerBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (burger && mobileNav) {
+    burger.addEventListener('click', () => { mobileNav.classList.toggle('open'); burger.classList.toggle('open'); });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileNav.classList.remove('open'); burger.classList.remove('open'); }));
+  }
+});
+</script>
 </body>
 </html>
