@@ -463,10 +463,11 @@ footer::before { content: ''; position: absolute; inset: 0; background-image: ur
   nav { grid-template-columns: 1fr auto; }
   .nav-links-left, .nav-links-right { display: none; }
   .burger { display: flex; position: relative; right: auto; top: auto; transform: none; }
-  #mobileNav { display: none; flex-direction: column; position: fixed; top: 72px; left: 0; width: 100vw; bottom: 0; background: rgba(242,232,213,0.98); padding: 2.5rem 6vw 3rem; gap: 0; overflow-y: auto; z-index: 99999; backdrop-filter: blur(16px); list-style: none; }
+  #mobileNav { display: none; flex-direction: column; position: fixed; top: 72px; left: 0; width: 100vw; bottom: 0; background: rgba(186,168,128,0.99); padding: 2.5rem 6vw 3rem; gap: 0; overflow-y: auto; z-index: 99999; backdrop-filter: blur(16px); list-style: none; }
   #mobileNav.open { display: flex; }
   #mobileNav li { border-bottom: 1px solid var(--kraft3); }
-  #mobileNav a { display: block; padding: 1.2rem 0; font-size: 0.85rem; color: var(--ink); text-decoration: none; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; }
+  #mobileNav a { display: block; padding: 1.2rem 0; font-size: 0.85rem; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+  #mobileNav a:hover { color: var(--moss); }
 }
 @media (max-width: 768px) {
   .hero h1 { font-size: clamp(3.5rem, 12vw, 6rem); }
@@ -481,11 +482,54 @@ footer::before { content: ''; position: absolute; inset: 0; background-image: ur
   .footer-brand { grid-column: auto; }
   .cta-section { padding: 6rem 6vw; }
 }
+@media (max-width: 768px) {
+  .cta-section { flex-direction: column; text-align: center; }
+  .cta-items { width: 100%; }
+  .cta-item { text-align: left; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .hero-actions a { width: 80%; text-align: center; }
+  .intro-section { padding: 5rem 6vw; }
+  .services-section { padding: 5rem 6vw; }
+  .tarifs-section { padding: 5rem 6vw; }
+  .why-section { padding: 5rem 6vw; }
+  .zones-section { padding: 5rem 6vw; }
+  .testimonial-section { padding: 5rem 6vw; }
+  .cta-section { padding: 5rem 6vw; }
+  .page-header { padding: 8rem 6vw 3rem; }
+  .page-header h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
+}
+
 @media (max-width: 480px) {
-  nav { height: 66px; }
-  .nav-links { top: 66px; }
+  nav { height: 64px; }
+  #mobileNav { top: 64px; }
+  .hero h1 { font-size: clamp(2.8rem, 13vw, 4rem); letter-spacing: -1px; }
+  .hero-stamp { font-size: 0.55rem; letter-spacing: 2.5px; padding: 0.35rem 0.8rem; }
+  .hero-content { padding: 0 5vw 5rem; }
+  .accordion-header { gap: 0.8rem; padding: 1.2rem 0; }
+  .ac-num { display: none; }
+  .ac-tag { display: none; }
+  .ac-title { font-size: 1.2rem; }
+  .tarifs-grid { max-width: 100%; }
+  .tarif-card { padding: 2rem 1.5rem; }
   .galerie-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-brand { grid-column: auto; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .form-title { font-size: 2rem; }
+  .contact-info { padding: 3rem 5vw; }
+  .contact-form-wrap { padding: 3rem 5vw; }
+  .zones-inner { gap: 2.5rem; }
+  .intro-section { gap: 2.5rem; }
+  .why-inner { gap: 2.5rem; }
+  .services-header { gap: 1.5rem; }
+  .services-header h2 { font-size: 2.5rem; }
+  .services-header-right p { display: none; }
+}
+
+@media (max-width: 360px) {
+  .hero h1 { font-size: 2.4rem; }
+  .accordion-header { gap: 0.6rem; }
+  .tarif-price { font-size: 2rem; }
 }
 
 /* ── ACCORDION SERVICES ── */
@@ -520,3 +564,79 @@ footer::before { content: ''; position: absolute; inset: 0; background-image: ur
 .services-kraft-bg { padding: 6rem 6vw; background: var(--kraft); position: relative; overflow: hidden; }
 .kraft-texture-overlay { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
 .services-kraft-bg .accordion-list { position: relative; z-index: 1; }
+
+/* ── ACCORDION INNER LAYOUT ── */
+.ac-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+.ac-text p {
+  font-size: 0.92rem; font-weight: 300; color: var(--ink2);
+  line-height: 1.85; opacity: 0.75; margin-bottom: 1rem;
+}
+
+/* ── SLIDER PHOTOS ── */
+.ac-slider {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--kraft3);
+  aspect-ratio: 4/3;
+}
+.slider-inner {
+  width: 100%; height: 100%;
+  position: relative;
+}
+.slider-loading, .slider-empty {
+  display: flex; align-items: center; justify-content: center;
+  height: 100%; font-size: 0.78rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--ink2); opacity: 0.4;
+  font-family: var(--font-sans);
+}
+.slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.slide.active { opacity: 1; }
+.slide img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; filter: saturate(0.85) sepia(0.08);
+  transition: filter 0.3s;
+}
+.slide:hover img { filter: saturate(1) sepia(0); }
+.slide-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(26,20,8,0.8) 0%, transparent 100%);
+  padding: 1.5rem 1rem 0.8rem;
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 0.88rem; color: var(--ecru); opacity: 0.9;
+}
+.slider-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(26,20,8,0.5); border: 1px solid rgba(232,220,200,0.2);
+  color: var(--ecru); font-size: 1rem; cursor: pointer;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 5; transition: background 0.2s;
+}
+.slider-btn:hover { background: var(--moss); border-color: var(--moss); }
+.slider-prev { left: 0.7rem; }
+.slider-next { right: 0.7rem; }
+.slider-dots {
+  position: absolute; bottom: 0.6rem; left: 50%;
+  transform: translateX(-50%); display: flex; gap: 6px; z-index: 5;
+}
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(232,220,200,0.4); cursor: pointer;
+  transition: background 0.2s;
+}
+.dot.active { background: var(--ecru); }
+
+/* Responsive accordion inner */
+@media (max-width: 860px) {
+  .ac-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .ac-slider { aspect-ratio: 16/9; }
+}

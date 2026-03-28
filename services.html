@@ -57,6 +57,59 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+<style>
+/* ── SLIDERS SERVICES ── */
+.ac-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+@media (max-width: 768px) {
+  .ac-inner { grid-template-columns: 1fr; }
+  .ac-slider { max-width: 100%; }
+  .accordion-body.open { max-height: 700px; }
+}
+
+.ac-text p { font-size: 0.88rem; font-weight: 300; color: var(--ink2); line-height: 1.8; opacity: 0.75; margin-bottom: 0.6rem; }
+
+.ac-slider { position: relative; border-radius: 8px; overflow: hidden; max-width: 320px; }
+.slider-inner { display: flex; transition: transform 0.4s ease; }
+.slider-slide {
+  min-width: 100%; flex-shrink: 0;
+  overflow: hidden;
+  height: 190px; /* Hauteur fixe plus petite */
+}
+.slider-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(0.85) sepia(0.05);
+  cursor: zoom-in;
+  transition: filter 0.3s, transform 0.3s;
+}
+.slider-slide img:hover { filter: saturate(1) sepia(0); transform: scale(1.02); }
+.slider-placeholder { width: 100%; height: 190px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: var(--kraft2); }
+.slider-placeholder span { font-size: 2rem; }
+.slider-placeholder p { font-family: var(--font-serif); font-size: 0.8rem; font-style: italic; color: var(--ink2); opacity: 0.45; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(30,61,32,0.8); color: var(--ecru); border: none; cursor: pointer; width: 28px; height: 28px; border-radius: 50%; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
+.slider-btn:hover { background: var(--moss); }
+.slider-prev { left: 0.5rem; }
+.slider-next { right: 0.5rem; }
+.slider-dots { position: absolute; bottom: 0.5rem; left: 0; right: 0; display: flex; justify-content: center; gap: 0.35rem; }
+.slider-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(245,239,227,0.4); cursor: pointer; transition: background 0.2s; }
+.slider-dot.active { background: var(--ecru); }
+.slider-loading { height: 190px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-style: italic; color: var(--ink2); opacity: 0.45; font-size: 0.82rem; }
+
+/* Accordion body max-height */
+.accordion-body.open { max-height: 500px; }
+
+/* ── LIGHTBOX SERVICES ── */
+#svc-lightbox {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(15,10,5,0.96);
+  align-items: center; justify-content: center; flex-direction: column;
+  padding: 1rem;
+}
+#svc-lightbox.open { display: flex; }
+#svc-lb-img { max-width: 90vw; max-height: 82vh; object-fit: contain; border-radius: 6px; box-shadow: 0 24px 80px rgba(0,0,0,0.8); }
+#svc-lb-close { position: fixed; top: 1.2rem; right: 1.5rem; background: rgba(245,239,227,0.08); border: 1px solid rgba(245,239,227,0.15); color: rgba(245,239,227,0.7); font-size: 1.3rem; cursor: pointer; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.2s; z-index: 10000; }
+#svc-lb-close:hover { background: var(--moss); color: var(--ecru); border-color: var(--moss); }
+</style>
 </head>
 <body>
 
@@ -92,26 +145,40 @@
     <p>Du terrassement à la création complète, nous intervenons sur tous vos besoins extérieurs avec rigueur et passion.</p>
   </header>
 
-  <!-- SERVICES DÉTAILLÉS -->
-  <section style="padding:6rem 6vw;background:var(--kraft);position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background-image:url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E\");pointer-events:none;"></div>
+  <!-- ACCORDION SERVICES + SLIDER PHOTOS -->
+  <section class="services-kraft-bg">
+    <div class="kraft-texture-overlay"></div>
 
     <div class="accordion-list" id="accordionServices">
 
+      <!-- 01 CRÉATION -->
       <div class="accordion-item">
-        <button class="accordion-header open" onclick="toggleAccordion(this)">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
           <span class="ac-num">01</span>
           <span class="ac-icon">🌿</span>
           <span class="ac-title">Création de jardins</span>
           <span class="ac-tag">Tous chantiers</span>
-          <span class="ac-arrow" style="transform:rotate(180deg);">↓</span>
+          <span class="ac-arrow">↓</span>
         </button>
-        <div class="accordion-body open">
-          <p>Conception et réalisation de jardins sur mesure, petits comme grands chantiers. Massifs fleuris, pelouses, rocailles, bassins et points d'eau, espaces arborés — nous transformons votre vision en réalité avec des végétaux choisis pour le climat des Alpes-de-Haute-Provence.</p>
-          <p style="margin-top:0.8rem;">Nous intervenons aussi bien sur des jardins de ville de quelques dizaines de mètres carrés que sur de grandes propriétés rurales. Chaque projet fait l'objet d'une visite préalable gratuite.</p>
+        <div class="accordion-body">
+          <div class="ac-inner">
+            <div class="ac-text">
+              <p>Conception et réalisation de jardins sur mesure, petits comme grands chantiers. Massifs fleuris, pelouses, rocailles, bassins, espaces arborés — nous transformons votre vision avec des végétaux choisis pour le climat local.</p>
+              <p>Nous intervenons sur des jardins de ville comme sur de grandes propriétés rurales. Chaque projet fait l'objet d'une visite préalable gratuite.</p>
+            </div>
+            <div class="ac-slider" data-cat="creation">
+              <div class="slider-inner" id="slider-creation">
+                <div class="slider-loading">Chargement des photos…</div>
+              </div>
+              <button class="slider-btn slider-prev" onclick="slideMove('creation', -1)">←</button>
+              <button class="slider-btn slider-next" onclick="slideMove('creation', 1)">→</button>
+              <div class="slider-dots" id="dots-creation"></div>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- 02 TERRASSEMENT -->
       <div class="accordion-item">
         <button class="accordion-header" onclick="toggleAccordion(this)">
           <span class="ac-num">02</span>
@@ -121,11 +188,24 @@
           <span class="ac-arrow">↓</span>
         </button>
         <div class="accordion-body">
-          <p>Nivellement de terrain, décaissement, remblai, compactage, préparation de fond de forme. Nous maîtrisons les travaux de gros œuvre paysager pour tout type de projet.</p>
-          <p style="margin-top:0.8rem;">Équipements adaptés aux accès difficiles et aux terrains en pente — une spécialité dans les Alpes-de-Haute-Provence.</p>
+          <div class="ac-inner">
+            <div class="ac-text">
+              <p>Nivellement, décaissement, remblai, compactage, préparation de fond de forme. Maîtrise du gros œuvre paysager pour tout type de projet.</p>
+              <p>Équipements adaptés aux accès difficiles et aux terrains en pente — une spécialité dans les Alpes-de-Haute-Provence.</p>
+            </div>
+            <div class="ac-slider" data-cat="terrassement">
+              <div class="slider-inner" id="slider-terrassement">
+                <div class="slider-loading">Chargement des photos…</div>
+              </div>
+              <button class="slider-btn slider-prev" onclick="slideMove('terrassement', -1)">←</button>
+              <button class="slider-btn slider-next" onclick="slideMove('terrassement', 1)">→</button>
+              <div class="slider-dots" id="dots-terrassement"></div>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- 03 ENTRETIEN -->
       <div class="accordion-item">
         <button class="accordion-header" onclick="toggleAccordion(this)">
           <span class="ac-num">03</span>
@@ -135,11 +215,24 @@
           <span class="ac-arrow">↓</span>
         </button>
         <div class="accordion-body">
-          <p>Taille des haies et arbustes, tonte et entretien des pelouses, désherbage manuel et mécanique, ramassage et évacuation des déchets verts. Un jardin toujours impeccable, toute l'année.</p>
-          <p style="margin-top:0.8rem;">Contrat d'entretien annuel possible avec fréquence adaptée à vos besoins (mensuel, bi-mensuel, saisonnier) à tarif préférentiel.</p>
+          <div class="ac-inner">
+            <div class="ac-text">
+              <p>Taille des haies et arbustes, tonte et entretien des pelouses, désherbage, ramassage et évacuation des déchets verts. Un jardin toujours impeccable, toute l'année.</p>
+              <p>Contrat d'entretien annuel possible avec fréquence adaptée à vos besoins à tarif préférentiel.</p>
+            </div>
+            <div class="ac-slider" data-cat="entretien">
+              <div class="slider-inner" id="slider-entretien">
+                <div class="slider-loading">Chargement des photos…</div>
+              </div>
+              <button class="slider-btn slider-prev" onclick="slideMove('entretien', -1)">←</button>
+              <button class="slider-btn slider-next" onclick="slideMove('entretien', 1)">→</button>
+              <div class="slider-dots" id="dots-entretien"></div>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- 04 ÉLAGAGE -->
       <div class="accordion-item">
         <button class="accordion-header" onclick="toggleAccordion(this)">
           <span class="ac-num">04</span>
@@ -149,11 +242,24 @@
           <span class="ac-arrow">↓</span>
         </button>
         <div class="accordion-body">
-          <p>Élagage raisonné pour entretenir la santé et la forme de vos arbres. Taille en hauteur avec nacelle ou grimpe. Abattage sécurisé d'arbres dangereux ou en fin de vie.</p>
-          <p style="margin-top:0.8rem;">Notre équipe est formée aux techniques de travaux en hauteur et intervient en toute sécurité quelle que soit la configuration — arbres proche des habitations, terrains en pente, accès restreints.</p>
+          <div class="ac-inner">
+            <div class="ac-text">
+              <p>Élagage raisonné pour entretenir la santé et la forme de vos arbres. Taille en hauteur avec nacelle ou grimpe. Abattage sécurisé d'arbres dangereux.</p>
+              <p>Équipe formée aux techniques de travaux en hauteur, quelle que soit la configuration.</p>
+            </div>
+            <div class="ac-slider" data-cat="elagage">
+              <div class="slider-inner" id="slider-elagage">
+                <div class="slider-loading">Chargement des photos…</div>
+              </div>
+              <button class="slider-btn slider-prev" onclick="slideMove('elagage', -1)">←</button>
+              <button class="slider-btn slider-next" onclick="slideMove('elagage', 1)">→</button>
+              <div class="slider-dots" id="dots-elagage"></div>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- 05 CLÔTURES -->
       <div class="accordion-item">
         <button class="accordion-header" onclick="toggleAccordion(this)">
           <span class="ac-num">05</span>
@@ -163,11 +269,24 @@
           <span class="ac-arrow">↓</span>
         </button>
         <div class="accordion-body">
-          <p>Pose de clôtures bois, aluminium, grillage rigide ou souple, PVC, gabions. Portails battants ou coulissants avec ou sans motorisation. Portillons. Tout sur mesure.</p>
-          <p style="margin-top:0.8rem;">Nous réalisons également les fondations, les poteaux et tous les travaux annexes pour une installation complète et durable.</p>
+          <div class="ac-inner">
+            <div class="ac-text">
+              <p>Pose de clôtures bois, aluminium, grillage, PVC, gabions. Portails battants ou coulissants avec motorisation. Portillons. Tout sur mesure.</p>
+              <p>Nous réalisons également les fondations et tous les travaux annexes pour une installation complète et durable.</p>
+            </div>
+            <div class="ac-slider" data-cat="clotures">
+              <div class="slider-inner" id="slider-clotures">
+                <div class="slider-loading">Chargement des photos…</div>
+              </div>
+              <button class="slider-btn slider-prev" onclick="slideMove('clotures', -1)">←</button>
+              <button class="slider-btn slider-next" onclick="slideMove('clotures', 1)">→</button>
+              <div class="slider-dots" id="dots-clotures"></div>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- 06 AMÉNAGEMENT -->
       <div class="accordion-item">
         <button class="accordion-header" onclick="toggleAccordion(this)">
           <span class="ac-num">06</span>
@@ -177,68 +296,23 @@
           <span class="ac-arrow">↓</span>
         </button>
         <div class="accordion-body">
-          <p>Terrasses en bois, composite ou dallage. Allées et cours en gravier, béton désactivé ou pavés. Murets en pierres sèches ou maçonnés. Escaliers extérieurs.</p>
-          <p style="margin-top:0.8rem;">Nous privilégions les matériaux naturels locaux — pierres de Provence, galets, graviers — pour des aménagements en harmonie avec le paysage alpin.</p>
+          <div class="ac-inner">
+            <div class="ac-text">
+              <p>Terrasses en bois, composite ou dallage. Allées en gravier, béton désactivé ou pavés. Murets en pierres sèches. Escaliers extérieurs.</p>
+              <p>Matériaux naturels locaux — pierres de Provence, galets, graviers — pour des aménagements durables et esthétiques.</p>
+            </div>
+            <div class="ac-slider" data-cat="amenagement">
+              <div class="slider-inner" id="slider-amenagement">
+                <div class="slider-loading">Chargement des photos…</div>
+              </div>
+              <button class="slider-btn slider-prev" onclick="slideMove('amenagement', -1)">←</button>
+              <button class="slider-btn slider-next" onclick="slideMove('amenagement', 1)">→</button>
+              <div class="slider-dots" id="dots-amenagement"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- TARIFS -->
-  <section style="padding:7rem 6vw;background:var(--ecru2);">
-    <div style="text-align:center;margin-bottom:5rem;">
-      <div class="intro-eyebrow" style="justify-content:center;">Nos formules</div>
-      <h2 style="font-family:var(--font-serif);font-size:clamp(3rem,5vw,5rem);font-weight:400;font-style:italic;color:var(--ink);line-height:1;letter-spacing:-0.5px;margin-bottom:1.2rem;">Tarification sur <em style="color:var(--moss);">devis,</em><br>toujours gratuit.</h2>
-      <p style="font-size:0.95rem;font-weight:300;color:var(--ink2);opacity:0.6;max-width:480px;margin:0 auto;line-height:1.85;">Demi-journée, journée ou contrat annuel — chaque intervention est adaptée à votre projet.</p>
-    </div>
-    <div class="tarifs-grid">
-      <div class="tarif-card">
-        <div class="tarif-eyebrow">Petite intervention</div>
-        <span class="tarif-icon">🌅</span>
-        <h3>Demi-journée</h3>
-        <div class="tarif-price">Sur devis</div>
-        <div class="tarif-price-sub">Environ 4 heures</div>
-        <p class="tarif-desc">Idéal pour les entretiens ponctuels, petits travaux ou interventions ciblées.</p>
-        <ul class="tarif-features">
-          <li>~4h d'intervention</li>
-          <li>Matin ou après-midi</li>
-          <li>Matériel inclus</li>
-          <li>Flexible et réactif</li>
-        </ul>
-      </div>
-      <div class="tarif-card featured">
-        <div class="tarif-eyebrow">Le plus demandé</div>
-        <span class="tarif-icon">☀️</span>
-        <h3>Journée complète</h3>
-        <div class="tarif-price">Sur devis</div>
-        <div class="tarif-price-sub">Environ 8 heures</div>
-        <p class="tarif-desc">Pour les chantiers importants : création, terrassement, élagage d'ampleur.</p>
-        <ul class="tarif-features">
-          <li>~8h d'intervention</li>
-          <li>Équipe complète si besoin</li>
-          <li>Engins inclus</li>
-          <li>Bilan en fin de journée</li>
-        </ul>
-      </div>
-      <div class="tarif-card">
-        <div class="tarif-eyebrow">Entretien régulier</div>
-        <span class="tarif-icon">🍂</span>
-        <h3>Contrat annuel</h3>
-        <div class="tarif-price">Sur devis</div>
-        <div class="tarif-price-sub">Passages planifiés / an</div>
-        <p class="tarif-desc">Passages réguliers, tarif préférentiel, priorité d'intervention.</p>
-        <ul class="tarif-features">
-          <li>Passages planifiés</li>
-          <li>Tarif annuel avantageux</li>
-          <li>Priorité d'intervention</li>
-          <li>Bilan saisonnier inclus</li>
-        </ul>
-        </div>
-    </div>
-    <div class="tarif-note">
-      <p><em>Devis et déplacement <strong>100% gratuits</strong> — nous nous rendons sur place pour évaluer votre projet.</em></p>
-      <small>Réponse garantie sous 48h · Sans engagement · Alpes-de-Haute-Provence</small>
     </div>
   </section>
 
@@ -247,7 +321,7 @@
     <div class="cta-text">
       <div class="intro-eyebrow">Prêt à commencer ?</div>
       <h2>Un projet,<br>un <strong>devis gratuit.</strong></h2>
-      <p style="font-size:0.95rem;font-weight:300;color:var(--ink2);line-height:1.85;opacity:0.65;">Décrivez-nous votre projet en 3 étapes. Déplacement offert, réponse garantie sous 48h.</p>
+      <p style="font-size:0.95rem;font-weight:300;color:var(--ink2);line-height:1.85;opacity:0.65;">Déplacement offert, réponse garantie sous 48h.</p>
     </div>
     <div class="cta-items">
       <a href="tel:+33600000000" class="cta-item">
@@ -262,7 +336,6 @@
   </section>
 
 </main>
-
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -274,7 +347,7 @@
     </div>
     <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Réalisations</a></li><li><a href="services.html">Nos services</a></li><li><a href="contact.html">Devis Gratuit</a></li></ul></div>
     <div class="footer-col"><h4>Prestations</h4><ul><li><a href="services.html">Création de jardins</a></li><li><a href="services.html">Terrassement</a></li><li><a href="services.html">Entretien</a></li><li><a href="services.html">Élagage</a></li><li><a href="services.html">Clôtures & portails</a></li></ul></div>
-    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+33600000000">📞 06 00 00 00 00</a></li><li><a href="/cdn-cgi/l/email-protection#2a4945445e4b495e6a464f59404b584e434459454e45585c4b46044c58">✉ <span class="__cf_email__" data-cfemail="6a0905041e0b091e2a060f19000b180e030419050e05181c0b06440c18">[email&#160;protected]</span></a></li><li>📍 Peyruis (04310)</li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+33600000000">📞 06 00 00 00 00</a></li><li><a href="/cdn-cgi/l/email-protection#81e2eeeff5e0e2f5c1ede4f2ebe0f3e5e8eff2eee5eef3f7e0edafe7f3">✉ <span class="__cf_email__" data-cfemail="492a26273d282a3d09252c3a23283b2d20273a262d263b3f2825672f3b">[email&#160;protected]</span></a></li><li>📍 Peyruis (04310)</li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2025 Les Jardins d'Or Val</span>
@@ -282,16 +355,264 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX SERVICES -->
+<div id="svc-lightbox">
+  <button id="svc-lb-close">&times;</button>
+  <img id="svc-lb-img" src="" alt="" />
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+
+
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const burger = document.getElementById('burgerBtn');
-  const mobileNav = document.getElementById('mobileNav');
+/* ── ACCORDION ── */
+function toggleAccordion(btn) {
+  var item = btn.closest('.accordion-item');
+  var body = item.querySelector('.accordion-body');
+  var arrow = btn.querySelector('.ac-arrow');
+  var isOpen = body.classList.contains('open');
+
+  document.querySelectorAll('.accordion-body').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.accordion-header').forEach(function(h) {
+    h.classList.remove('open');
+    var a = h.querySelector('.ac-arrow');
+    if (a) a.style.transform = '';
+  });
+
+  if (!isOpen) {
+    body.classList.add('open');
+    btn.classList.add('open');
+    if (arrow) arrow.style.transform = 'rotate(180deg)';
+    // Init slider si présent
+    var cat = body.querySelector('.ac-slider');
+    if (cat) initSlider(cat.dataset.cat);
+  }
+}
+
+/* ── SLIDER ── */
+var sliders = {};
+
+function initSlider(cat) {
+  if (sliders[cat]) return;
+  sliders[cat] = { index: 0 };
+  // Photos locales — remplacer par tes vraies photos
+  var photos = {
+    creation:     ['images/services/creation-1.webp','images/services/creation-2.webp','images/services/creation-3.webp'],
+    terrassement: ['images/services/terrassement-1.webp','images/services/terrassement-2.webp','images/services/terrassement-3.webp'],
+    entretien:    ['images/services/entretien-1.webp','images/services/entretien-2.webp','images/services/entretien-3.webp'],
+    elagage:      ['images/services/elagage-1.webp','images/services/elagage-2.webp','images/services/elagage-3.webp'],
+    clotures:     ['images/services/clotures-1.webp','images/services/clotures-2.webp','images/services/clotures-3.webp'],
+    amenagement:  ['images/services/amenagement-1.webp','images/services/amenagement-2.webp','images/services/amenagement-3.webp'],
+  };
+  var icons = { creation:'🌿', terrassement:'🚜', entretien:'✂️', elagage:'🌳', clotures:'🔒', amenagement:'🪨' };
+
+  var inner = document.getElementById('slider-' + cat);
+  var dots  = document.getElementById('dots-' + cat);
+  if (!inner || !dots) return;
+
+  var imgs = photos[cat] || [];
+  inner.innerHTML = '';
+  dots.innerHTML  = '';
+
+  imgs.forEach(function(src, i) {
+    var slide = document.createElement('div');
+    slide.className = 'slider-slide';
+    var img = document.createElement('img');
+    img.src = src; img.alt = cat + ' ' + (i+1); img.loading = 'lazy';
+    img.onerror = function() {
+      slide.innerHTML = '<div class="slider-placeholder"><span>' + (icons[cat]||'🌿') + '</span><p>Photo à venir</p></div>';
+    };
+    img.addEventListener('click', function() { openSvcLightbox(src); });
+    slide.appendChild(img);
+    inner.appendChild(slide);
+
+    var dot = document.createElement('span');
+    dot.className = 'slider-dot' + (i===0 ? ' active' : '');
+    dot.onclick = (function(idx) { return function() { goTo(cat, idx); }; })(i);
+    dots.appendChild(dot);
+  });
+
+  goTo(cat, 0);
+}
+
+function goTo(cat, index) {
+  if (!sliders[cat]) return;
+  var inner = document.getElementById('slider-' + cat);
+  var dots  = document.querySelectorAll('#dots-' + cat + ' .slider-dot');
+  var total = inner ? inner.children.length : 0;
+  if (!total) return;
+  index = ((index % total) + total) % total;
+  sliders[cat].index = index;
+  inner.style.transform = 'translateX(-' + (index * 100) + '%)';
+  dots.forEach(function(d, i) { d.classList.toggle('active', i === index); });
+}
+
+function slideMove(cat, dir) {
+  if (!sliders[cat]) { initSlider(cat); return; }
+  goTo(cat, sliders[cat].index + dir);
+}
+
+/* ── LIGHTBOX ── */
+function openSvcLightbox(src) {
+  var lb = document.getElementById('svc-lightbox');
+  var img = document.getElementById('svc-lb-img');
+  if (!lb || !img) return;
+  img.src = src;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSvcLightbox() {
+  var lb = document.getElementById('svc-lightbox');
+  if (lb) lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Ouvrir le 1er accordion
+  var first = document.querySelector('.accordion-header');
+  if (first) toggleAccordion(first);
+
+  // Lightbox fermeture
+  var svcLb = document.getElementById('svc-lightbox');
+  var svcClose = document.getElementById('svc-lb-close');
+  if (svcClose) svcClose.addEventListener('click', closeSvcLightbox);
+  if (svcLb) svcLb.addEventListener('click', function(e) { if (e.target === svcLb) closeSvcLightbox(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSvcLightbox(); });
+
+  // Burger
+  var burger = document.getElementById('burgerBtn');
+  var mobileNav = document.getElementById('mobileNav');
   if (burger && mobileNav) {
-    burger.addEventListener('click', () => { mobileNav.classList.toggle('open'); burger.classList.toggle('open'); });
-    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileNav.classList.remove('open'); burger.classList.remove('open'); }));
+    burger.addEventListener('click', function() { mobileNav.classList.toggle('open'); burger.classList.toggle('open'); });
+    mobileNav.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { mobileNav.classList.remove('open'); burger.classList.remove('open'); });
+    });
   }
 });
 </script>
 </body>
 </html>
+
+<script>
+/* ── ACCORDION ── */
+function toggleAccordion(btn) {
+  var item = btn.closest('.accordion-item');
+  var body = item.querySelector('.accordion-body');
+  var arrow = btn.querySelector('.ac-arrow');
+  var isOpen = body.classList.contains('open');
+
+  document.querySelectorAll('.accordion-body').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.accordion-header').forEach(function(h) {
+    h.classList.remove('open');
+    var a = h.querySelector('.ac-arrow');
+    if (a) a.style.transform = '';
+  });
+
+  if (!isOpen) {
+    body.classList.add('open');
+    btn.classList.add('open');
+    if (arrow) arrow.style.transform = 'rotate(180deg)';
+    // Init slider si présent
+    var cat = body.querySelector('.ac-slider');
+    if (cat) initSlider(cat.dataset.cat);
+  }
+}
+
+/* ── SLIDER ── */
+var sliders = {};
+
+function initSlider(cat) {
+  if (sliders[cat]) return;
+  sliders[cat] = { index: 0 };
+  // Photos locales — remplacer par tes vraies photos
+  var photos = {
+    creation:     ['images/services/creation-1.webp','images/services/creation-2.webp','images/services/creation-3.webp'],
+    terrassement: ['images/services/terrassement-1.webp','images/services/terrassement-2.webp','images/services/terrassement-3.webp'],
+    entretien:    ['images/services/entretien-1.webp','images/services/entretien-2.webp','images/services/entretien-3.webp'],
+    elagage:      ['images/services/elagage-1.webp','images/services/elagage-2.webp','images/services/elagage-3.webp'],
+    clotures:     ['images/services/clotures-1.webp','images/services/clotures-2.webp','images/services/clotures-3.webp'],
+    amenagement:  ['images/services/amenagement-1.webp','images/services/amenagement-2.webp','images/services/amenagement-3.webp'],
+  };
+  var icons = { creation:'🌿', terrassement:'🚜', entretien:'✂️', elagage:'🌳', clotures:'🔒', amenagement:'🪨' };
+
+  var inner = document.getElementById('slider-' + cat);
+  var dots  = document.getElementById('dots-' + cat);
+  if (!inner || !dots) return;
+
+  var imgs = photos[cat] || [];
+  inner.innerHTML = '';
+  dots.innerHTML  = '';
+
+  imgs.forEach(function(src, i) {
+    var slide = document.createElement('div');
+    slide.className = 'slider-slide';
+    var img = document.createElement('img');
+    img.src = src; img.alt = cat + ' ' + (i+1); img.loading = 'lazy';
+    img.onerror = function() {
+      slide.innerHTML = '<div class="slider-placeholder"><span>' + (icons[cat]||'🌿') + '</span><p>Photo à venir</p></div>';
+    };
+    img.addEventListener('click', function() { openSvcLightbox(src); });
+    slide.appendChild(img);
+    inner.appendChild(slide);
+
+    var dot = document.createElement('span');
+    dot.className = 'slider-dot' + (i===0 ? ' active' : '');
+    dot.onclick = (function(idx) { return function() { goTo(cat, idx); }; })(i);
+    dots.appendChild(dot);
+  });
+
+  goTo(cat, 0);
+}
+
+function goTo(cat, index) {
+  if (!sliders[cat]) return;
+  var inner = document.getElementById('slider-' + cat);
+  var dots  = document.querySelectorAll('#dots-' + cat + ' .slider-dot');
+  var total = inner ? inner.children.length : 0;
+  if (!total) return;
+  index = ((index % total) + total) % total;
+  sliders[cat].index = index;
+  inner.style.transform = 'translateX(-' + (index * 100) + '%)';
+  dots.forEach(function(d, i) { d.classList.toggle('active', i === index); });
+}
+
+function slideMove(cat, dir) {
+  if (!sliders[cat]) { initSlider(cat); return; }
+  goTo(cat, sliders[cat].index + dir);
+}
+
+/* ── LIGHTBOX ── */
+function openSvcLightbox(src) {
+  var lb = document.getElementById('svc-lightbox');
+  var img = document.getElementById('svc-lb-img');
+  if (!lb || !img) return;
+  img.src = src;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSvcLightbox() {
+  var lb = document.getElementById('svc-lightbox');
+  if (lb) lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Ouvrir le 1er accordion
+  var first = document.querySelector('.accordion-header');
+  if (first) toggleAccordion(first);
+
+  // Lightbox fermeture
+  var svcLb = document.getElementById('svc-lightbox');
+  var svcClose = document.getElementById('svc-lb-close');
+  if (svcClose) svcClose.addEventListener('click', closeSvcLightbox);
+  if (svcLb) svcLb.addEventListener('click', function(e) { if (e.target === svcLb) closeSvcLightbox(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSvcLightbox(); });
+
+  // Burger
+  var burger = document.getElementById('burgerBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  if (burger && mobileNav) {
+    burger.addEventListener('click', function() { mobileNav.classList.toggle('ope
